@@ -14,6 +14,7 @@ public enum CutoutTouchMode {
 }
 
 @available(macOS 10.15, *)
+@available(iOS 13.0, *)
 public struct Callout {
     public static func text(_ text: String, edge: Edge = .top) -> Self {
         .bubble(edge: edge) { Text(text) }
@@ -61,6 +62,7 @@ public struct Callout {
 }
 
 @available(macOS 10.15, *)
+@available(iOS 13.0, *)
 struct CalloutBubble: Shape {
     let edge: Edge
     
@@ -111,6 +113,7 @@ struct CalloutBubble: Shape {
 }
 
 @available(macOS 10.15, *)
+@available(iOS 13.0, *)
 struct CalloutBubblePreview: PreviewProvider {
     static var previews: some View {
         VStack {
@@ -123,6 +126,7 @@ struct CalloutBubblePreview: PreviewProvider {
 }
 
 @available(macOS 10.15, *)
+@available(iOS 13.0, *)
 struct CalloutButtonStyle: ButtonStyle {
     let edge: Edge
     

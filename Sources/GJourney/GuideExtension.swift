@@ -8,8 +8,8 @@
 import Foundation
 import SwiftUI
 
-@available(macOS 10.15, *)@available(macOS 10.15, *)
-
+@available(macOS 10.15, *)
+@available(iOS 13.0, *)
 extension View {
     public func guide<Tags: GuideTags>(isActive: Bool, tags: Tags.Type, delegate: GuideDelegate? = nil) -> some View {
         GuidableView(isActive: isActive, tags: tags, delegate: delegate) {

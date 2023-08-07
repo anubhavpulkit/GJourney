@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 
 @available(macOS 10.15, *)
+@available(iOS 13.0, *)
 public protocol GuideDelegate {
     func accessoryView(guide: Guide) -> AnyView?
     func overlay(guide: Guide) -> AnyView?
@@ -18,6 +19,7 @@ public protocol GuideDelegate {
 }
 
 @available(macOS 10.15, *)
+@available(iOS 13.0, *)
 extension GuideDelegate {
     public func overlay(guide: Guide) -> AnyView? {
         AnyView(Color(white: 0.8, opacity: 0.5))
@@ -37,6 +39,7 @@ extension GuideDelegate {
 }
 
 @available(macOS 10.15, *)
+@available(iOS 13.0, *)
 struct DefaultGuideDelegate: GuideDelegate {
     func accessoryView(guide: Guide) -> AnyView? {
         AnyView(Text("Bye"))
@@ -129,6 +132,7 @@ public final class Guide: ObservableObject {
 }
 
 @available(macOS 10.15, *)
+@available(iOS 13.0, *)
 class GuideStatePublisher: ObservableObject {
     enum State {
         case hidden
@@ -140,11 +144,13 @@ class GuideStatePublisher: ObservableObject {
 }
 
 @available(macOS 10.15, *)
+@available(iOS 13.0, *)
 public protocol GuideTags: CaseIterable {
     func makeCallout() -> Callout
 }
 
 @available(macOS 10.15, *)
+@available(iOS 13.0, *)
 extension GuideTags {
     func key() -> String {
         String(reflecting: Self.self) + "." + String(describing: self)

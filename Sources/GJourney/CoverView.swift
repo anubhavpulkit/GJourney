@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 
 @available(macOS 10.15, *)
+@available(iOS 13.0, *)
 public struct GuideContainerView<Content: View>: View {
     @StateObject private var guide = Guide()
     
@@ -33,6 +34,7 @@ public struct GuideContainerView<Content: View>: View {
 
 
 @available(macOS 10.15, *)
+@available(iOS 13.0, *)
 private struct GuideOverlay: View {
     let guide: Guide
     let allRecordedItems: GuideTagPreferenceKey.Value
@@ -61,6 +63,7 @@ private struct GuideOverlay: View {
 }
 
 @available(macOS 10.15, *)
+@available(iOS 13.0, *)
 private struct ActiveGuideOverlay: View {
     let tagInfo: GuideTagInfo
     let guide: Guide
@@ -153,6 +156,7 @@ private struct ActiveGuideOverlay: View {
 }
 
 @available(macOS 10.15, *)
+@available(iOS 13.0, *)
 public struct GuidableView<Content: View, Tags: GuideTags>: View {
     let isActive: Bool
     let delegate: GuideDelegate?
@@ -169,6 +173,7 @@ public struct GuidableView<Content: View, Tags: GuideTags>: View {
     }
     
     @available(macOS 10.15, *)
+    @available(iOS 13.0, *)
     public var body: some View {
             if #available(macOS 11.0, *) {
                 content
@@ -194,12 +199,14 @@ public struct GuidableView<Content: View, Tags: GuideTags>: View {
 }
 
 @available(macOS 10.15, *)
+@available(iOS 13.0, *)
 struct GuideTagInfo {
     let anchor: Anchor<CGRect>
     let callout: Callout
 }
 
 @available(macOS 10.15, *)
+@available(iOS 13.0, *)
 struct GuideTagPreferenceKey: PreferenceKey {
     typealias Value = [String: GuideTagInfo]
     
