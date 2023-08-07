@@ -42,7 +42,7 @@ extension GuideDelegate {
 @available(iOS 13.0, *)
 struct DefaultGuideDelegate: GuideDelegate {
     func accessoryView(guide: Guide) -> AnyView? {
-        AnyView(Text("Bye"))
+        AnyView(Text(""))
     }
 }
 
