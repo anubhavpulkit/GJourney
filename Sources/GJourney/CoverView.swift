@@ -39,7 +39,7 @@ private struct GuideOverlay: View {
     let guide: Guide
     let allRecordedItems: GuideTagPreferenceKey.Value
     let popoverSize: CGSize
-
+    
     @ObservedObject var guideState: GuideStatePublisher
     
     var body: some View {
@@ -75,9 +75,9 @@ private struct ActiveGuideOverlay: View {
                 .onTapGesture {
                     guide.delegate.onBackgroundTap(guide: guide)
                 }
-
+            
             touchModeView(for: proxy[tagInfo.anchor], mode: guide.delegate.cutoutTouchMode(guide: guide))
-
+            
             tagInfo.callout.createView(onTap: { guide.delegate.onCalloutTap(guide: guide) })
                 .offset(
                     x: cutoutOffsetX(cutout: proxy[tagInfo.anchor]),
@@ -162,7 +162,7 @@ public struct GuidableView<Content: View, Tags: GuideTags>: View {
     let delegate: GuideDelegate?
     let startDelay: TimeInterval
     let content: Content
-
+    
     @EnvironmentObject private var guide: Guide
     
     init(isActive: Bool, tags: Tags.Type, delegate: GuideDelegate?, startDelay: TimeInterval = 0.5, @ViewBuilder content: () -> Content) {
@@ -175,26 +175,26 @@ public struct GuidableView<Content: View, Tags: GuideTags>: View {
     @available(macOS 10.15, *)
     @available(iOS 13.0, *)
     public var body: some View {
-            if #available(macOS 11.0, *) {
-                content
-                    .onAppear {
-                        if isActive {
-                            DispatchQueue.main.asyncAfter(deadline: .now() + startDelay) {
-                                guide.start(tags: Tags.self, delegate: delegate)
-                            }
-                        }
-                    }
-                    .onDisappear {
-                        guide.stop()
-                    }
-                    .onChange(of: isActive) { active in
-                        if active {
+        if #available(macOS 11.0, *), #available(iOS 14.0, *) {
+            content
+                .onAppear {
+                    if isActive {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + startDelay) {
                             guide.start(tags: Tags.self, delegate: delegate)
                         }
                     }
-            } else {
-                // Fallback on earlier versions
-            }
+                }
+                .onDisappear {
+                    guide.stop()
+                }
+                .onChange(of: isActive) { active in
+                    if active {
+                        guide.start(tags: Tags.self, delegate: delegate)
+                    }
+                }
+        } else {
+            // Fallback on earlier versions
+        }
     }
 }
 

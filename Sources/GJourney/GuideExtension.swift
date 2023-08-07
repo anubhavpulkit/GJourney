@@ -44,6 +44,7 @@ extension View {
     }
     
     @available(macOS 11.0, *)
+    @available(iOS 14.0, *)
     public func stopGuide(_ guide: Guide, onLink navigationLink: Bool) -> some View {
         onChange(of: navigationLink, perform: { shown in
             if shown {
@@ -53,6 +54,7 @@ extension View {
     }
     
     @available(macOS 11.0, *)
+    @available(iOS 14.0, *)
     public func stopGuide<V: Hashable>(_ guide: Guide, onTag navigationTag: V, selection: V) -> some View {
         onChange(of: selection, perform: { value in
             if navigationTag == value {
